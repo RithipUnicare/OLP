@@ -1,0 +1,1294 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "OpenAPI definition", "version": "v0" },
+  "servers": [
+    {
+      "url": "http://app.undefineddevelopers.online/olp",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/user/edit": {
+      "put": {
+        "tags": ["user-controller"],
+        "operationId": "editUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserEditRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/mass-intentions/{id}/reject": {
+      "put": {
+        "tags": ["mass-intention-controller"],
+        "operationId": "reject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMassIntention"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mass-intentions/{id}/pay": {
+      "put": {
+        "tags": ["mass-intention-controller"],
+        "operationId": "pay",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMassIntention"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mass-intentions/{id}/approve": {
+      "put": {
+        "tags": ["mass-intention-controller"],
+        "operationId": "approve",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMassIntention"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/holy-items/{id}/stock/{stock}": {
+      "put": {
+        "tags": ["holy-item-controller"],
+        "operationId": "updateStock",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          },
+          {
+            "name": "stock",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ApiResponseHolyItem" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/altar-schedule/{id}": {
+      "put": {
+        "tags": ["altar-schedule-controller"],
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AltarScheduleRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseAltarSchedule"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/update-role": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "updateUserRole",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RoleUpdateRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "signup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Signuprequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "resetPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/auth/request-password-reset": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "requestPasswordReset",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "refreshToken",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["auth-controller"],
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/api/parish-profile": {
+      "post": {
+        "tags": ["parish-profile-controller"],
+        "operationId": "createOrUpdate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ParishProfileRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseParishProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/notifications": {
+      "get": {
+        "tags": ["notification-controller"],
+        "operationId": "all",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListNotification"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["notification-controller"],
+        "operationId": "create",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "message",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseNotification"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/monthly-pdf": {
+      "get": {
+        "tags": ["monthly-pdf-controller"],
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMonthlyPdf"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["monthly-pdf-controller"],
+        "operationId": "upload",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": { "type": "string", "format": "binary" }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMonthlyPdf"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mass-intentions": {
+      "get": {
+        "tags": ["mass-intention-controller"],
+        "operationId": "all_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListMassIntention"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["mass-intention-controller"],
+        "operationId": "create_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/MassIntentionRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseMassIntention"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/holy-items": {
+      "get": {
+        "tags": ["holy-item-controller"],
+        "operationId": "available",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListHolyItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["holy-item-controller"],
+        "operationId": "add",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/HolyItem" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ApiResponseHolyItem" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/holy-items/order": {
+      "post": {
+        "tags": ["holy-item-controller"],
+        "operationId": "order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/HolyItemOrderRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseHolyItemOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/{id}/upload": {
+      "post": {
+        "tags": ["certificate-controller"],
+        "operationId": "upload_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": { "type": "string", "format": "binary" }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseCertificate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/request": {
+      "post": {
+        "tags": ["certificate-controller"],
+        "operationId": "request",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CertificateRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseCertificate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/altar-schedule": {
+      "get": {
+        "tags": ["altar-schedule-controller"],
+        "operationId": "all_2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListAltarSchedule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["altar-schedule-controller"],
+        "operationId": "create_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AltarScheduleRequest" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseAltarSchedule"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getAllUsers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/User" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "tags": ["user-controller"],
+        "operationId": "getProfile",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": { "schema": { "$ref": "#/components/schemas/User" } }
+            }
+          }
+        }
+      }
+    },
+    "/api/parish-profile/street/{street}": {
+      "get": {
+        "tags": ["parish-profile-controller"],
+        "operationId": "byStreet",
+        "parameters": [
+          {
+            "name": "street",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListParishProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/parish-profile/me": {
+      "get": {
+        "tags": ["parish-profile-controller"],
+        "operationId": "myProfile",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseParishProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/monthly-pdf/all": {
+      "get": {
+        "tags": ["monthly-pdf-controller"],
+        "operationId": "all_3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListMonthlyPdf"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mass-intentions/me": {
+      "get": {
+        "tags": ["mass-intention-controller"],
+        "operationId": "myIntentions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListMassIntention"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/holy-items/orders": {
+      "get": {
+        "tags": ["holy-item-controller"],
+        "operationId": "allOrders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListHolyItemOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/holy-items/orders/me": {
+      "get": {
+        "tags": ["holy-item-controller"],
+        "operationId": "myOrders",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListHolyItemOrder"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates": {
+      "get": {
+        "tags": ["certificate-controller"],
+        "operationId": "all_4",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListCertificate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/certificates/me": {
+      "get": {
+        "tags": ["certificate-controller"],
+        "operationId": "myCertificates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListCertificate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/birthdays/today": {
+      "get": {
+        "tags": ["birthday-controller"],
+        "operationId": "today",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListParishProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/birthdays/month/{month}": {
+      "get": {
+        "tags": ["birthday-controller"],
+        "operationId": "byMonth",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListParishProfile"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/altar-schedule/{date}": {
+      "get": {
+        "tags": ["altar-schedule-controller"],
+        "operationId": "byDate",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "date" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponseListAltarSchedule"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "delete": {
+        "tags": ["user-controller"],
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "*/*": { "schema": { "type": "string" } } }
+          }
+        }
+      }
+    },
+    "/api/notifications/{id}": {
+      "delete": {
+        "tags": ["notification-controller"],
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": { "$ref": "#/components/schemas/ApiResponseVoid" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserEditRequest": {
+        "type": "object",
+        "properties": {
+          "mobileNumber": { "type": "string" },
+          "name": { "type": "string" }
+        }
+      },
+      "ApiResponseMassIntention": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/MassIntention" }
+        }
+      },
+      "MassIntention": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "requestedBy": { "$ref": "#/components/schemas/User" },
+          "intentionFor": { "type": "string" },
+          "intentionDate": { "type": "string", "format": "date" },
+          "description": { "type": "string" },
+          "status": { "type": "string" },
+          "paymentStatus": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "name": { "type": "string" },
+          "mobileNumber": { "type": "string" },
+          "password": { "type": "string" },
+          "roles": { "type": "string" },
+          "email": { "type": "string" }
+        }
+      },
+      "ApiResponseHolyItem": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/HolyItem" }
+        }
+      },
+      "HolyItem": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "itemName": { "type": "string" },
+          "stock": { "type": "integer", "format": "int32" },
+          "available": { "type": "boolean" }
+        }
+      },
+      "AltarScheduleRequest": {
+        "type": "object",
+        "properties": {
+          "serviceDate": { "type": "string", "format": "date" },
+          "altarBoys": { "type": "string" },
+          "readers": { "type": "string" },
+          "choirMembers": { "type": "string" }
+        }
+      },
+      "AltarSchedule": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "serviceDate": { "type": "string", "format": "date" },
+          "altarBoys": { "type": "string" },
+          "readers": { "type": "string" },
+          "choirMembers": { "type": "string" }
+        }
+      },
+      "ApiResponseAltarSchedule": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/AltarSchedule" }
+        }
+      },
+      "RoleUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "mobileNumber": { "type": "string" },
+          "roles": { "type": "string" }
+        }
+      },
+      "Signuprequest": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "mobileNumber": { "type": "string" },
+          "password": { "type": "string" },
+          "email": { "type": "string" }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "mobileNumber": { "type": "string" },
+          "password": { "type": "string" }
+        }
+      },
+      "ParishProfileRequest": {
+        "type": "object",
+        "properties": {
+          "userId": { "type": "integer", "format": "int64" },
+          "streetName": { "type": "string" },
+          "dateOfBirth": { "type": "string", "format": "date" },
+          "feastName": { "type": "string" }
+        }
+      },
+      "ApiResponseParishProfile": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/ParishProfile" }
+        }
+      },
+      "ParishProfile": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "user": { "$ref": "#/components/schemas/User" },
+          "streetName": { "type": "string" },
+          "dateOfBirth": { "type": "string", "format": "date" },
+          "feastName": { "type": "string" }
+        }
+      },
+      "ApiResponseNotification": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/Notification" }
+        }
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "title": { "type": "string" },
+          "message": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "ApiResponseMonthlyPdf": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/MonthlyPdf" }
+        }
+      },
+      "MonthlyPdf": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "month": { "type": "string" },
+          "year": { "type": "integer", "format": "int32" },
+          "fileUrl": { "type": "string" },
+          "uploadedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "MassIntentionRequest": {
+        "type": "object",
+        "properties": {
+          "intentionFor": { "type": "string" },
+          "intentionDate": { "type": "string", "format": "date" },
+          "description": { "type": "string" }
+        }
+      },
+      "HolyItemOrderRequest": {
+        "type": "object",
+        "properties": {
+          "holyItemId": { "type": "integer", "format": "int64" },
+          "quantity": { "type": "integer", "format": "int32" }
+        }
+      },
+      "ApiResponseHolyItemOrder": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/HolyItemOrder" }
+        }
+      },
+      "HolyItemOrder": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "user": { "$ref": "#/components/schemas/User" },
+          "holyItem": { "$ref": "#/components/schemas/HolyItem" },
+          "quantity": { "type": "integer", "format": "int32" },
+          "status": { "type": "string" },
+          "orderedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "ApiResponseCertificate": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": { "$ref": "#/components/schemas/Certificate" }
+        }
+      },
+      "Certificate": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "user": { "$ref": "#/components/schemas/User" },
+          "certificateType": { "type": "string" },
+          "fileUrl": { "type": "string" },
+          "status": { "type": "string" },
+          "requestedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "CertificateRequest": {
+        "type": "object",
+        "properties": {
+          "certificateType": { "type": "string" },
+          "remarks": { "type": "string" }
+        }
+      },
+      "ApiResponseListParishProfile": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ParishProfile" }
+          }
+        }
+      },
+      "ApiResponseListNotification": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Notification" }
+          }
+        }
+      },
+      "ApiResponseListMonthlyPdf": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MonthlyPdf" }
+          }
+        }
+      },
+      "ApiResponseListMassIntention": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MassIntention" }
+          }
+        }
+      },
+      "ApiResponseListHolyItem": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/HolyItem" }
+          }
+        }
+      },
+      "ApiResponseListHolyItemOrder": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/HolyItemOrder" }
+          }
+        }
+      },
+      "ApiResponseListCertificate": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Certificate" }
+          }
+        }
+      },
+      "ApiResponseListAltarSchedule": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AltarSchedule" }
+          }
+        }
+      },
+      "ApiResponseVoid": {
+        "type": "object",
+        "properties": {
+          "success": { "type": "boolean" },
+          "message": { "type": "string" },
+          "data": {}
+        }
+      }
+    }
+  }
+}
