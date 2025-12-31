@@ -52,9 +52,11 @@ const HolyItemsScreen = ({ navigation }: any) => {
   };
 
   useEffect(() => {
-    fetchItems();
-    fetchUserProfile();
-  }, []);
+    navigation.addListener('focus', () => {
+      fetchItems();
+      fetchUserProfile();
+    });
+  }, [navigation]);
 
   const onChangeSearch = (query: string) => setSearchQuery(query);
 
