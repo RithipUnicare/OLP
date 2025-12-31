@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
 } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import DatePicker from 'react-native-date-picker';
 import { MassIntentionService } from '../services/MassIntentionService';
 
 const MassIntentionsScreen = () => {
@@ -21,6 +22,19 @@ const MassIntentionsScreen = () => {
   const [myIntentions, setMyIntentions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [date, setDate] = useState(new Date());
+
+  const handleDateConfirm = (selectedDate: Date) => {
+    setShowDatePicker(false);
+    setDate(selectedDate);
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+    setIntentionDate(formattedDate);
+  };
+
+  const handleDateCancel = () => {
+    setShowDatePicker(false);
+  };
 
   const fetchMyIntentions = async () => {
     setLoading(true);
@@ -129,11 +143,26 @@ const MassIntentionsScreen = () => {
             <TextInput
               label="Date (YYYY-MM-DD)"
               value={intentionDate}
-              onChangeText={setIntentionDate}
               mode="outlined"
-              placeholder="2024-12-31"
+              placeholder="YYYY-MM-DD"
               style={styles.input}
               left={<TextInput.Icon icon="calendar" />}
+              editable={false}
+              onPressIn={() => setShowDatePicker(true)}
+              right={
+                <TextInput.Icon
+                  icon="calendar-clock"
+                  onPress={() => setShowDatePicker(true)}
+                />
+              }
+            />
+            <DatePicker
+              modal
+              open={showDatePicker}
+              date={date}
+              mode="date"
+              onConfirm={handleDateConfirm}
+              onCancel={handleDateCancel}
             />
             <TextInput
               label="Description/Notes"

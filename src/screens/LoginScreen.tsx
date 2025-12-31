@@ -67,6 +67,7 @@ const LoginScreen = ({ navigation }: any) => {
               keyboardType="phone-pad"
               style={styles.input}
               left={<TextInput.Icon icon="phone" />}
+              maxLength={10}
               outlineColor="rgba(255,255,255,0.3)"
               activeOutlineColor={theme.colors.primary}
               theme={{

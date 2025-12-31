@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import TabNavigator from './TabNavigator';
 import HolyItemDetailsScreen from '../screens/HolyItemDetailsScreen';
+import CreateHolyItemScreen from '../screens/CreateHolyItemScreen';
 import MyOrdersScreen from '../screens/MyOrdersScreen';
 import AltarScheduleScreen from '../screens/AltarScheduleScreen';
 import CertificatesScreen from '../screens/CertificatesScreen';
@@ -47,6 +48,10 @@ const AppNavigator = () => {
         <Stack.Screen
           name="HolyItemDetails"
           component={HolyItemDetailsScreen}
+        />
+        <Stack.Screen
+          name="CreateHolyItem"
+          component={CreateHolyItemScreen}
         />
         <Stack.Screen name="MyOrders" component={MyOrdersScreen} />
         <Stack.Screen name="AltarSchedule" component={AltarScheduleScreen} />

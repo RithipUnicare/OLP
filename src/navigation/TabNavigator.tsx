@@ -24,6 +24,7 @@ const TabNavigator = () => {
           borderTopWidth: 1,
           borderTopColor: theme.colors.outlineVariant,
         },
+        tabBarShowLabel: true,
       }}
     >
       <Tab.Screen

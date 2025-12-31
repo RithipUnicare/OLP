@@ -12,6 +12,7 @@ import {
 } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { HolyItemService } from '../services/HolyItemService';
+import { UserProfileService } from '../services/UserProfileService';
 
 const DEFAULT_IMAGE = 'https://via.placeholder.com/150';
 
@@ -20,6 +21,7 @@ const HolyItemsScreen = ({ navigation }: any) => {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [userRole, setUserRole] = useState<string | null>(null);
 
   const fetchItems = async () => {
     setLoading(true);
@@ -35,8 +37,23 @@ const HolyItemsScreen = ({ navigation }: any) => {
     }
   };
 
+  const fetchUserProfile = async () => {
+    try {
+      const response = await UserProfileService.getProfile();
+      console.log(response)
+      if (response) {
+        // API returns array, get first item's requestedBy.roles
+        setUserRole(response?.roles || null);
+      }
+    } catch (error) {
+      console.error('Failed to fetch user profile', error);
+      setUserRole(null);
+    }
+  };
+
   useEffect(() => {
     fetchItems();
+    fetchUserProfile();
   }, []);
 
   const onChangeSearch = (query: string) => setSearchQuery(query);
@@ -142,6 +159,19 @@ const HolyItemsScreen = ({ navigation }: any) => {
         onPress={() => navigation.navigate('MyOrders')}
         color={theme.colors.onTertiaryContainer}
       />
+
+      {userRole === 'SUPERADMIN' && (
+        <FAB
+          icon="plus"
+          label="Create Item"
+          style={[
+            styles.createFab,
+            { backgroundColor: theme.colors.primaryContainer },
+          ]}
+          onPress={() => navigation.navigate('CreateHolyItem')}
+          color={theme.colors.onPrimaryContainer}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -190,6 +220,13 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+    borderRadius: 16,
+  },
+  createFab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 80,
     borderRadius: 16,
   },
 });

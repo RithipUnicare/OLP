@@ -10,6 +10,8 @@ export const HolyItemService = {
     itemName: string;
     stock: number;
     available: boolean;
+    availabilityDate?: string;
+    description?: string;
   }) => {
     const response = await api.post('/api/holy-items', data);
     return response.data;
